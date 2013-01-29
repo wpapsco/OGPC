@@ -75,7 +75,7 @@ public class Map {
 		for (int i = 0; i < currentEnemies.size(); i+=0) {
 			boolean b = false;
 			if (currentEnemies.get(i).isMarkedForDeletion()) {
-				currentEnemies.remove(i);
+				currentEnemies.remove(i) ;
 				b = true;
 			}
 			if (!b) {

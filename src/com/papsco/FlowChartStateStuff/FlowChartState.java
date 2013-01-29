@@ -327,7 +327,6 @@ public class FlowChartState extends BasicGameState {
 						}
 					}
 				} catch (SlickException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				settingBlock = false;
@@ -530,8 +529,15 @@ public class FlowChartState extends BasicGameState {
 	
 	public void deleteAll() {
 		// TODO Auto-generated method stub
-		for (int i = blocks.size() - 1; i >= 0; i--) {
-			removeBlock(i);
+//		for (int i = blocks.size() - 1; i >= 0; i--) {
+//			removeBlock(i);
+//		}
+		blocks = new ArrayList<Block>();
+		try {
+			blocks.add(new StartBlock(new Vector2f(175, 50)));
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

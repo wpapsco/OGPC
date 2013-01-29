@@ -52,7 +52,6 @@ public class LevelSelectState extends BasicGameState {
 		tutorialButtons.add(new Button(new Rectangle(525, 300, 50, 50), false));
 		tutorialLevelLocations.add(new Vector2f(100, 200));
 		tutorialLevelLocations.add(new Vector2f(525, 300));
-		//wag
 		
 		spineButtons.add(new Button(new Rectangle(100, 200, 50, 50), false));
 		spineButtons.add(new Button(new Rectangle(525, 300, 50, 50), false));
@@ -95,6 +94,11 @@ public class LevelSelectState extends BasicGameState {
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		
+		if (OGPC.completedLevels[1]) {
+			curWorld = SPINEWORLD;
+		}
+		
 		if (curWorld == TUTORIALWORLD) {
 			if (tutorialButtons.get(0).isClicked(arg0.getInput())) {
 				OGPC.level = 0;
@@ -109,12 +113,8 @@ public class LevelSelectState extends BasicGameState {
 		}
 		
 		if (curWorld == SPINEWORLD) {
-			if (spineButtons.get(0).isClicked(arg0.getInput())) {
-				OGPC.level = 0;
-				arg1.enterState(OGPC.FLOWCHARTSTATE);
-			}
-			for (int i = 1; i < spineButtons.size(); i++) {
-				if (spineButtons.get(i).isClicked(arg0.getInput()) && OGPC.completedLevels[i - 1]) {
+			for (int i = 0; i < spineButtons.size(); i++) {
+				if (spineButtons.get(i).isClicked(arg0.getInput()) && OGPC.completedLevels[i + 1]) {
 					OGPC.level = i + 2;
 					arg1.enterState(OGPC.FLOWCHARTSTATE);
 				}

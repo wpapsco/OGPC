@@ -55,24 +55,48 @@ public class RunState extends BasicGameState {
 		gameMusic = new Sound("sounds/gameplay.ogg");
 		returnButton = new Button(new Image("pics/returnButton.png"), new Vector2f(50, 575));
 		maps = new ArrayList<Map>();
-		map = new Map(new Vector2f(375, 575));
+		map = new Map(new Vector2f(400, 300));
 		
-		map.addObstacle(new Obstacle(new Rectangle(0, 400, 350, 200)));
-		map.addObstacle(new Obstacle(new Rectangle(0, 300, 700, 100)));
-		map.addObstacle(new Obstacle(new Rectangle(100, 100, 700, 100)));
+//		map.addObstacle(new Obstacle(new Rectangle(0, 400, 350, 200)));
+//		map.addObstacle(new Obstacle(new Rectangle(0, 300, 700, 100)));
+//		map.addObstacle(new Obstacle(new Rectangle(100, 100, 700, 100)));
+//		
+//		map.addEvent(new LocationalEvent(new Vector2f(775, 25), false));
+//		map.addEvent(new EnemiesKilledEvent(false));
+//		
+//		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(650, 550)));
+//		
+//		map.setObjectiveText("Level 1: Kill the enemy or get to the end to win!");
+//		maps.add(map);
+//		
+//		map = new Map(new Vector2f(25, 25));
+//		map.addObstacle(new Obstacle(new Rectangle(400, 300, 100, 100)));
+//		map.setObjectiveText("Level 2: Levels totally work now! (You can't win this one!)");
+//		maps.add(map);
 		
-		map.addEvent(new LocationalEvent(new Vector2f(775, 25), false));
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
 		map.addEvent(new EnemiesKilledEvent(false));
-		
-		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(650, 550)));
-		
-		map.setObjectiveText("Level 1: Kill the enemy or get to the end to win!");
+		map.setObjectiveText("Level one");
 		maps.add(map);
+		map = new Map(new Vector2f(400, 300));
 		
-		map = new Map(new Vector2f(25, 25));
-		map.addObstacle(new Obstacle(new Rectangle(400, 300, 100, 100)));
-		map.setObjectiveText("Level 2: Levels totally work now! (You can't win this one!)");
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
+		map.addEvent(new EnemiesKilledEvent(false));
+		map.setObjectiveText("Level two");
 		maps.add(map);
+		map = new Map(new Vector2f(400, 300));
+		
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
+		map.addEvent(new EnemiesKilledEvent(false));
+		map.setObjectiveText("Level three");
+		maps.add(map);
+		map = new Map(new Vector2f(400, 300));
+		
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
+		map.addEvent(new EnemiesKilledEvent(false));
+		map.setObjectiveText("Level four");
+		maps.add(map);
+		map = new Map(new Vector2f(400, 300));
 		
 		player = new Player(new Vector2f(maps.get(OGPC.level).getPlayerStartLoc().x, maps.get(OGPC.level).getPlayerStartLoc().y), playerImage);
 	}
