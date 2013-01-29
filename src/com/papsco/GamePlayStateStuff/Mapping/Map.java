@@ -22,6 +22,7 @@ public class Map {
 	private ArrayList<Enemy> currentEnemies;
 	private Vector2f playerStartLoc;
 	private String objectiveText;
+	private boolean isCompleted;
 	
 	public Map(Vector2f playerStartLoc) {
 		obstacles = new ArrayList<Obstacle>();
@@ -29,6 +30,7 @@ public class Map {
 		enemies = new ArrayList<Enemy>();
 		currentEnemies = new ArrayList<Enemy>();
 		this.playerStartLoc = playerStartLoc;
+		isCompleted = false;
 		objectiveText = "";
 		addObstacle(new Obstacle(new Line(new Vector2f(0, 0), new Vector2f(0, 600))));
 		addObstacle(new Obstacle(new Line(new Vector2f(800, 600), new Vector2f(0, 600))));
@@ -137,5 +139,14 @@ public class Map {
 		for (int i = 0; i < obstacles.size(); i++) {
 			obstacles.get(i).draw(g);
 		}
+	}
+
+	public void Complete() {
+		isCompleted = true;
+	}
+
+	public boolean isCompleted() {
+		// TODO Auto-generated method stub
+		return isCompleted;
 	}
 }

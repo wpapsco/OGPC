@@ -131,5 +131,9 @@ public class Player {
 	public void dropBomb() {
 		
 	}
+	public void setLoc(Vector2f vector2f) {
+		// TODO Auto-generated method stub
+		this.loc = vector2f;
+	}
 	
 }

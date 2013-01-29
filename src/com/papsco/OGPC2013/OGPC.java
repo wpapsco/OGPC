@@ -21,12 +21,17 @@ public class OGPC extends StateBasedGame {
 	public static final int TITLESTATE = 2;
 	public static final int LEVELSELECTSTATE = 3;
 	public ArrayList<Block> blockInfo;
-	public static boolean changedLevel = false;
+	public static boolean doReset = false;
 	public static boolean IsMuted = true;
+	public static int level = 0;
+	public static boolean[] completedLevels;
 	
 	public OGPC(String name) {
 		super(name);
 		// TODO Auto-generated constructor stub
+		completedLevels = new boolean[2];
+		completedLevels[0] = false;
+		completedLevels[1] = false;
 	}
 
 	@Override

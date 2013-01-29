@@ -22,7 +22,7 @@ public class EnemiesKilledEvent extends Event {
 	@Override
 	public void effect(GameContainer c, RunState s) {
 		// TODO Auto-generated method stub
-		s.nextLevel();
+		s.getMap().Complete();
 	}
 
 }

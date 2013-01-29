@@ -73,6 +73,7 @@ public class FlowChartState extends BasicGameState {
 	
 	private Button deleteAllButton;
 	private Button muteButton;
+	private Button levelSelectButton;
 	
 	private Button massiveBackgroundButton;
 	
@@ -84,6 +85,7 @@ public class FlowChartState extends BasicGameState {
 	private int selectedBlockSubType;
 	private Button runButton;
 	private int selectedBlockId;
+	
 	
 	public FlowChartState(int stateID) {
 		this.stateID = stateID;
@@ -120,6 +122,7 @@ public class FlowChartState extends BasicGameState {
 		
 		deleteAllButton =          new Button(new Image("pics/DeleteAll.png"), new Vector2f(750, 25));
 		muteButton =               new Button(new Image("pics/Mute.png"), new Vector2f(750, 75));
+		levelSelectButton =        new Button(new Image("pics/ToLevelSelect.png"), new Vector2f(750, 125));
 		
 		massiveBackgroundButton =  new Button(new Image("pics/testMap.png"),       new Vector2f(400, 300)); //button is not displayed because it is only used for detecting clicks on the screen in general. It uses a background image for the size
 		runButton =                new Button(new Image("pics/runButton.png"),     new Vector2f(750, 575));
@@ -179,6 +182,7 @@ public class FlowChartState extends BasicGameState {
 		deleteAllButton.draw(g);
 		muteButton.draw(g);
 		runButton.draw(g);
+		levelSelectButton.draw(g);
 		
 		g.draw(new Line(new Vector2f(100, 0), new Vector2f(100, 600)));
 		
@@ -466,6 +470,11 @@ public class FlowChartState extends BasicGameState {
 			deleteAll();
 		}
 		
+		if (levelSelectButton.isClicked(in)) {
+			game.enterState(OGPC.LEVELSELECTSTATE);
+			deleteAll();
+		}
+		
 		if (muteButton.isClicked(in)) {
 			OGPC.IsMuted = !OGPC.IsMuted;
 		}
@@ -513,9 +522,9 @@ public class FlowChartState extends BasicGameState {
 			}
 		}
 		
-		if (OGPC.changedLevel) {
+		if (OGPC.doReset) {
 			deleteAll();
-			OGPC.changedLevel = false;
+			OGPC.doReset = false;
 		}
 	}
 	

@@ -44,14 +44,11 @@ public class RunState extends BasicGameState {
 	private Map map;
 	private Sound gameMusic;
 	private ArrayList<Map> maps;
-	private int levelNum;
 	private Button returnButton;
-	private boolean onToNextLevel = false;
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		levelNum = 0;
 		// TODO Auto-generated method stub
 		playerImage = new Image("pics/player.png");
 		background = new Image("pics/testMap.png");
@@ -77,7 +74,7 @@ public class RunState extends BasicGameState {
 		map.setObjectiveText("Level 2: Levels totally work now! (You can't win this one!)");
 		maps.add(map);
 		
-		player = new Player(new Vector2f(maps.get(levelNum).getPlayerStartLoc().x, maps.get(levelNum).getPlayerStartLoc().y), playerImage);
+		player = new Player(new Vector2f(maps.get(OGPC.level).getPlayerStartLoc().x, maps.get(OGPC.level).getPlayerStartLoc().y), playerImage);
 	}
 
 	@Override
@@ -87,9 +84,9 @@ public class RunState extends BasicGameState {
 		//background.draw();
 		player.draw(g);
 		g.setColor(Color.blue);
-		maps.get(levelNum).draw(g);
+		maps.get(OGPC.level).draw(g);
 		g.setColor(Color.blue);
-		maps.get(levelNum).drawObstacles(g);
+		maps.get(OGPC.level).drawObstacles(g);
 		returnButton.draw(g);
 		g.draw(new Rectangle(775, 25, 2, 2));
 	}
@@ -100,8 +97,8 @@ public class RunState extends BasicGameState {
 		// TODO Auto-generated method stub
 
 		Input in = container.getInput();
-		maps.get(levelNum).update(container, this);
-		maps.get(levelNum).checkEnemyCollisions(player.getBullets());
+		maps.get(OGPC.level).update(container, this);
+		maps.get(OGPC.level).checkEnemyCollisions(player.getBullets());
 		
 		if (returnButton.isClicked(in)) {
 			onRunComplete();
@@ -116,7 +113,7 @@ public class RunState extends BasicGameState {
 			gameMusic.play();
 		}
 		
-		player.update(delta, maps.get(levelNum));
+		player.update(delta, maps.get(OGPC.level));
 		
 		CheckForAtWall();
 		
@@ -128,17 +125,12 @@ public class RunState extends BasicGameState {
 	}
 
 	public Map getMap() {
-		return maps.get(levelNum);
+		return maps.get(OGPC.level);
 	}
 	
 	public void onRunComplete() {
 		System.out.println("Complete");
 		reset();
-	}
-
-	public void nextLevel() {
-		onToNextLevel = true;
-		maps.get(levelNum).onDone();
 	}
 	
 	public void setPlayer(Player p) {
@@ -150,14 +142,14 @@ public class RunState extends BasicGameState {
 	}
 
 	public void reset() {
-		if (onToNextLevel == true && maps.size() > levelNum + 1) {
-			levelNum++;
-			onToNextLevel = false;
-			OGPC.changedLevel = true;
-		}
-		player.reset(new Vector2f(maps.get(levelNum).getPlayerStartLoc().x, maps.get(levelNum).getPlayerStartLoc().y));
-		maps.get(levelNum).reset();
+		player.reset(new Vector2f(maps.get(OGPC.level).getPlayerStartLoc().x, maps.get(OGPC.level).getPlayerStartLoc().y));
+		maps.get(OGPC.level).reset();
 		runnable.stop();
+		for (int i = 0; i < maps.size(); i++) {
+			if (maps.get(i).isCompleted()) {
+				OGPC.completedLevels[i] = true;
+			}
+		}
 	}
 
 	@Override
@@ -170,6 +162,7 @@ public class RunState extends BasicGameState {
 		t = new Thread(runnable);
 		t.start();
 		gameMusic.loop();
+		player.setLoc(new Vector2f(maps.get(OGPC.level).getPlayerStartLoc().x, maps.get(OGPC.level).getPlayerStartLoc().y));
 	}
 	
 	@Override

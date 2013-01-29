@@ -22,7 +22,7 @@ public class LocationalEvent extends Event {
 
 	@Override
 	public void effect(GameContainer c, RunState s) {
-		s.nextLevel();
+		s.getMap().Complete();
 	}
 
 }

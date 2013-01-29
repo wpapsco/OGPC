@@ -1,5 +1,7 @@
 package GuiItems;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -23,15 +25,17 @@ public class LevelSelectState extends BasicGameState {
 	
 	private Image bgImage;
 	private Animation selectAnim;
-	private Button selectLevelButton;
+	private ArrayList<Button> Buttons;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		Buttons = new ArrayList<Button>();
 		bgImage = new Image("pics/vertibre.png");
 		selectAnim = new Animation(new SpriteSheet(new Image("pics/SelectAnimation.png"), 50, 50), 100);
-		selectLevelButton = new Button(new Rectangle(100, 200, 50, 50), false);
+		Buttons.add(new Button(new Rectangle(100, 200, 50, 50), false));
+		Buttons.add(new Button(new Rectangle(525, 300, 50, 50), false));
 	}
 
 	@Override
@@ -40,16 +44,23 @@ public class LevelSelectState extends BasicGameState {
 		// TODO Auto-generated method stub
 		bgImage.draw();
 		selectAnim.draw(100, 200);
+		if (OGPC.completedLevels[0]) {
+			selectAnim.draw(525, 300);
+		}
 		g.setColor(Color.black);
 		g.drawString("Surgery One - The Spine", 0, 0);
-		selectLevelButton.draw(g);
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		if (selectLevelButton.isClicked(arg0.getInput())) {
+		if (Buttons.get(0).isClicked(arg0.getInput())) {
+			OGPC.level = 0;
+			arg1.enterState(OGPC.FLOWCHARTSTATE);
+		}
+		if (Buttons.get(1).isClicked(arg0.getInput())) {
+			OGPC.level = 1;
 			arg1.enterState(OGPC.FLOWCHARTSTATE);
 		}
 
