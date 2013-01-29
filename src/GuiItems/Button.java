@@ -14,6 +14,8 @@ public class Button {
 	private Vector2f loc;
 	private Shape rect;
 	private boolean prevCl;
+	private boolean drawRect;
+	private boolean hasImage;
 	
 	public Button(Image image, Vector2f loc) {
 		this.loc = loc;
@@ -21,12 +23,24 @@ public class Button {
 		rect = new Rectangle(0, 0, image.getWidth(), image.getHeight());
 		rect.setCenterX(loc.x);
 		rect.setCenterY(loc.y);
+		drawRect = true;
+		hasImage = true;
+	}
+	
+	public Button(Rectangle rect, boolean drawRect) {
+		this.rect = rect;
+		this.drawRect = drawRect;
+		hasImage = false;
 	}
 	
 	public void draw(Graphics g) {
-		image.drawCentered(loc.x, loc.y);
+		if (hasImage) {
+			image.drawCentered(loc.x, loc.y);
+		}
 		g.setColor(Color.blue);
-		g.draw(rect);
+		if (drawRect) {
+			g.draw(rect);
+		}
 	}
 	
 	public Shape getRect() {

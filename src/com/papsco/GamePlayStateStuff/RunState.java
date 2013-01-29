@@ -76,7 +76,8 @@ public class RunState extends BasicGameState {
 		map.addObstacle(new Obstacle(new Rectangle(400, 300, 100, 100)));
 		map.setObjectiveText("Level 2: Levels totally work now! (You can't win this one!)");
 		maps.add(map);
-		player = new Player(maps.get(levelNum).getPlayerStartLoc(), playerImage);
+		
+		player = new Player(new Vector2f(maps.get(levelNum).getPlayerStartLoc().x, maps.get(levelNum).getPlayerStartLoc().y), playerImage);
 	}
 
 	@Override
@@ -149,11 +150,12 @@ public class RunState extends BasicGameState {
 	}
 
 	public void reset() {
-		if (onToNextLevel = true && maps.size() > levelNum + 1) {
+		if (onToNextLevel == true && maps.size() > levelNum + 1) {
 			levelNum++;
 			onToNextLevel = false;
+			OGPC.changedLevel = true;
 		}
-		player.reset(maps.get(levelNum).getPlayerStartLoc());
+		player.reset(new Vector2f(maps.get(levelNum).getPlayerStartLoc().x, maps.get(levelNum).getPlayerStartLoc().y));
 		maps.get(levelNum).reset();
 		runnable.stop();
 	}

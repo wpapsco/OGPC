@@ -463,9 +463,7 @@ public class FlowChartState extends BasicGameState {
 		}
 		
 		if (deleteAllButton.isClicked(in)) {
-			for (int i = blocks.size() - 1; i >= 0; i--) {
-				removeBlock(i);
-			}
+			deleteAll();
 		}
 		
 		if (muteButton.isClicked(in)) {
@@ -514,8 +512,20 @@ public class FlowChartState extends BasicGameState {
 				removeBlock(selectedBlockId);
 			}
 		}
+		
+		if (OGPC.changedLevel) {
+			deleteAll();
+			OGPC.changedLevel = false;
+		}
 	}
 	
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+		for (int i = blocks.size() - 1; i >= 0; i--) {
+			removeBlock(i);
+		}
+	}
+
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {

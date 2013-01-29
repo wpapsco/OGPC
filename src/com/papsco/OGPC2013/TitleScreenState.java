@@ -46,7 +46,7 @@ public class TitleScreenState extends BasicGameState {
 		// TODO Auto-generated method stub
 		Input in = container.getInput();
 		if (startButton.isClicked(in)) {
-			game.enterState(OGPC.FLOWCHARTSTATE);
+			game.enterState(OGPC.LEVELSELECTSTATE);
 		}
 	}
 
