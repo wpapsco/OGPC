@@ -29,9 +29,11 @@ public class OGPC extends StateBasedGame {
 	public OGPC(String name) {
 		super(name);
 		// TODO Auto-generated constructor stub
-		completedLevels = new boolean[2];
+		completedLevels = new boolean[4];
 		completedLevels[0] = false;
 		completedLevels[1] = false;
+		completedLevels[2] = false;
+		completedLevels[3] = false;
 	}
 
 	@Override
@@ -50,6 +52,10 @@ public class OGPC extends StateBasedGame {
 	
 	public void setCurrentBlockInfo(ArrayList<Block> b) {
 		blockInfo = b;
+	}
+	
+	public void nextWorld() {
+		((LevelSelectState)this.getState(LEVELSELECTSTATE)).setWorld(0);
 	}
 
 	/**
