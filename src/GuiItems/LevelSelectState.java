@@ -52,6 +52,7 @@ public class LevelSelectState extends BasicGameState {
 		tutorialButtons.add(new Button(new Rectangle(525, 300, 50, 50), false));
 		tutorialLevelLocations.add(new Vector2f(100, 200));
 		tutorialLevelLocations.add(new Vector2f(525, 300));
+		//wag
 		
 		spineButtons.add(new Button(new Rectangle(100, 200, 50, 50), false));
 		spineButtons.add(new Button(new Rectangle(525, 300, 50, 50), false));
