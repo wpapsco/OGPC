@@ -50,13 +50,21 @@ public class LevelSelectState extends BasicGameState {
 		
 		tutorialButtons.add(new Button(new Rectangle(100, 200, 50, 50), false));
 		tutorialButtons.add(new Button(new Rectangle(525, 300, 50, 50), false));
+		tutorialButtons.add(new Button(new Rectangle(100, 100, 50, 50), false));
+		tutorialButtons.add(new Button(new Rectangle(550, 200, 50, 50), false));
 		tutorialLevelLocations.add(new Vector2f(100, 200));
 		tutorialLevelLocations.add(new Vector2f(525, 300));
+		tutorialLevelLocations.add(new Vector2f(100, 100));
+		tutorialLevelLocations.add(new Vector2f(550, 200));
 		
 		spineButtons.add(new Button(new Rectangle(100, 200, 50, 50), false));
 		spineButtons.add(new Button(new Rectangle(525, 300, 50, 50), false));
+		spineButtons.add(new Button(new Rectangle(100, 100, 50, 50), false));
+		spineButtons.add(new Button(new Rectangle(550, 200, 50, 50), false));
 		spineLevelLocations.add(new Vector2f(100, 200));
 		spineLevelLocations.add(new Vector2f(525, 300));
+		spineLevelLocations.add(new Vector2f(100, 100));
+		spineLevelLocations.add(new Vector2f(550, 200));
 		
 		curWorld = TUTORIALWORLD;
 	}
@@ -95,7 +103,7 @@ public class LevelSelectState extends BasicGameState {
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
-		if (OGPC.completedLevels[1]) {
+		if (OGPC.completedLevels[3]) {
 			curWorld = SPINEWORLD;
 		}
 		

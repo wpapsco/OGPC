@@ -1,12 +1,13 @@
 package com.papsco.GamePlayStateStuff.Mapping;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 
 import com.papsco.GamePlayStateStuff.RunState;
 
 public abstract class Event {
 	
-	private boolean constant, executed;
+	protected boolean constant, executed;
 	
 	public Event(boolean constant) {
 		this.constant = constant;
@@ -25,9 +26,15 @@ public abstract class Event {
 		}
 	}
 	
+	public boolean isExecuted() {
+		return executed;
+	}
+	
 	public void reset() {
 		executed = false;
 	}
+	
+	public abstract void draw(Graphics g);
 	
 	public abstract boolean condition(GameContainer c, RunState s);
 	

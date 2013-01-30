@@ -1,6 +1,7 @@
 package com.papsco.GamePlayStateStuff.Mapping;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 
 import com.papsco.GamePlayStateStuff.RunState;
 
@@ -22,7 +23,13 @@ public class EnemiesKilledEvent extends Event {
 	@Override
 	public void effect(GameContainer c, RunState s) {
 		// TODO Auto-generated method stub
-		s.getMap().Complete();
+		this.executed = true;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

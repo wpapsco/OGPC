@@ -23,6 +23,7 @@ public class Map {
 	private Vector2f playerStartLoc;
 	private String objectiveText;
 	private boolean isCompleted;
+	private boolean hasImage;
 	
 	public Map(Vector2f playerStartLoc) {
 		obstacles = new ArrayList<Obstacle>();
@@ -36,6 +37,19 @@ public class Map {
 		addObstacle(new Obstacle(new Line(new Vector2f(800, 600), new Vector2f(0, 600))));
 		addObstacle(new Obstacle(new Line(new Vector2f(800, 600), new Vector2f(800, 0))));
 		addObstacle(new Obstacle(new Line(new Vector2f(0, 0), new Vector2f(800, 0))));
+		hasImage = false;
+	}
+	
+	public Map(Vector2f playerStartLoc, Image image) {
+		obstacles = new ArrayList<Obstacle>();
+		events = new ArrayList<Event>();
+		enemies = new ArrayList<Enemy>();
+		currentEnemies = new ArrayList<Enemy>();
+		this.playerStartLoc = playerStartLoc;
+		isCompleted = false;
+		objectiveText = "";
+		this.image = image;
+		hasImage = true;
 	}
 	
 	public void setObjectiveText(String objectiveText) {
@@ -65,6 +79,7 @@ public class Map {
 			for (int j = 0; j < bullets.size(); j++){
 				if (currentEnemies.get(i).getCollisionRect().intersects(bullets.get(j).getCollisionRect())) {
 					currentEnemies.get(i).takeDamage(100);
+					bullets.get(i).setExplosionLocation(bullets.get(i).getPath().currentPoint);
 					bullets.get(j).markDeleted();
 				}
 				if (currentEnemies.get(i).getCollisionRect().intersects(bullets.get(j).getExplosionCircle()) && bullets.get(i).isMarkedForDeletion() && !bullets.get(i).isFinishedExploding()) {
@@ -85,8 +100,15 @@ public class Map {
 	}
 	
 	public void update(GameContainer c, RunState s) {
+		boolean doComplete = true;
 		for (int i = 0; i < events.size(); i++) {
 			events.get(i).update(c, s);
+			if (!events.get(i).isExecuted()) {
+				doComplete = false;
+			}
+		}
+		if (doComplete) {
+			Complete();
 		}
 		for (int i = 0; i < currentEnemies.size(); i++) {
 			currentEnemies.get(i).update(c, s);
@@ -127,9 +149,16 @@ public class Map {
 	}
 	
 	public void draw(Graphics g) {
-		//image.draw();
+		if (hasImage) {
+			image.draw();
+		}else {
+			drawObstacles(g);
+		}
 		for (int i = 0; i < currentEnemies.size(); i++) {
 			currentEnemies.get(i).draw(g);
+		}
+		for (int i = 0; i < events.size(); i++) {
+			events.get(i).draw(g);
 		}
 		g.setColor(Color.green);
 		g.drawString(objectiveText, 0, 0);
@@ -142,6 +171,7 @@ public class Map {
 	}
 
 	public void Complete() {
+		if (!isCompleted) {objectiveText = objectiveText + " - Done!";}
 		isCompleted = true;
 	}
 

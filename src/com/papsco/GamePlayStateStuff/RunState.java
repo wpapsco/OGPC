@@ -55,48 +55,52 @@ public class RunState extends BasicGameState {
 		gameMusic = new Sound("sounds/gameplay.ogg");
 		returnButton = new Button(new Image("pics/returnButton.png"), new Vector2f(50, 575));
 		maps = new ArrayList<Map>();
-		map = new Map(new Vector2f(400, 300));
 		
-//		map.addObstacle(new Obstacle(new Rectangle(0, 400, 350, 200)));
-//		map.addObstacle(new Obstacle(new Rectangle(0, 300, 700, 100)));
-//		map.addObstacle(new Obstacle(new Rectangle(100, 100, 700, 100)));
-//		
-//		map.addEvent(new LocationalEvent(new Vector2f(775, 25), false));
-//		map.addEvent(new EnemiesKilledEvent(false));
-//		
-//		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(650, 550)));
-//		
-//		map.setObjectiveText("Level 1: Kill the enemy or get to the end to win!");
-//		maps.add(map);
-//		
-//		map = new Map(new Vector2f(25, 25));
-//		map.addObstacle(new Obstacle(new Rectangle(400, 300, 100, 100)));
-//		map.setObjectiveText("Level 2: Levels totally work now! (You can't win this one!)");
-//		maps.add(map);
+		map = new Map(new Vector2f(45, 45), new Image("pics/LevelSpine1.png"));
+		map.addEvent(new EnemiesKilledEvent(false));
+		map.addEvent(new LocationalEvent(new Rectangle(420, 500, 360, 80), false));
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(650, 45)));
+		map.setObjectiveText("Spine - Level one");
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 580, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(780, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(170, 20, 20, 350)));
+		map.addObstacle(new Obstacle(new Rectangle(400, 130, 20, 450)));
+		map.addObstacle(new Obstacle(new Rectangle(610, 80, 20, 90)));
+		map.addObstacle(new Obstacle(new Rectangle(630, 150, 150, 20)));
+		maps.add(map);
 		
+		map = new Map(new Vector2f(400, 350));
 		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
 		map.addEvent(new EnemiesKilledEvent(false));
-		map.setObjectiveText("Level one");
+		map.setObjectiveText("Medicate the enemy!");
 		maps.add(map);
-		map = new Map(new Vector2f(400, 300));
 		
-		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
+		map = new Map(new Vector2f(300, 350));
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(450, 200)));
 		map.addEvent(new EnemiesKilledEvent(false));
-		map.setObjectiveText("Level two");
+		map.setObjectiveText("Can you get this one?");
 		maps.add(map);
-		map = new Map(new Vector2f(400, 300));
 		
-		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
-		map.addEvent(new EnemiesKilledEvent(false));
-		map.setObjectiveText("Level three");
+		map = new Map(new Vector2f(400, 575));
+		map.addEvent(new LocationalEvent(new Vector2f(25, 25), false));
+		map.setObjectiveText("How about getting around this corner?");
+		map.addObstacle(new Obstacle(new Rectangle(0, 100, 350, 500)));
+		map.addObstacle(new Obstacle(new Rectangle(450, 0, 350, 600)));
 		maps.add(map);
-		map = new Map(new Vector2f(400, 300));
 		
-		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
+		map = new Map(new Vector2f(400, 575));
 		map.addEvent(new EnemiesKilledEvent(false));
-		map.setObjectiveText("Level four");
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(25, 25)));
+		map.setObjectiveText("Now put it all together!");
+		map.addObstacle(new Obstacle(new Rectangle(0, 100, 350, 500)));
+		map.addObstacle(new Obstacle(new Rectangle(450, 0, 350, 600)));
 		maps.add(map);
-		map = new Map(new Vector2f(400, 300));
+		
+		//spine levels
+		
+		
 		
 		player = new Player(new Vector2f(maps.get(OGPC.level).getPlayerStartLoc().x, maps.get(OGPC.level).getPlayerStartLoc().y), playerImage);
 	}
@@ -106,13 +110,12 @@ public class RunState extends BasicGameState {
 			throws SlickException {
 		// TODO Auto-generated method stub
 		//background.draw();
-		player.draw(g);
 		g.setColor(Color.blue);
 		maps.get(OGPC.level).draw(g);
 		g.setColor(Color.blue);
 		maps.get(OGPC.level).drawObstacles(g);
+		player.draw(g);
 		returnButton.draw(g);
-		g.draw(new Rectangle(775, 25, 2, 2));
 	}
 
 	@Override
