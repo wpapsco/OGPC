@@ -36,6 +36,13 @@ public class LevelSelectState extends BasicGameState {
 	private ArrayList<Vector2f> spineLevelLocations;
 	private int curWorld;
 	
+	
+	
+	int x = 0;
+	int y = 0;
+	
+	
+	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
@@ -48,23 +55,23 @@ public class LevelSelectState extends BasicGameState {
 		bgTutorialImage = new Image("pics/TutorialLevelSelect.png");
 		selectAnim = new Animation(new SpriteSheet(new Image("pics/SelectAnimation.png"), 50, 50), 100);
 		
-		tutorialButtons.add(new Button(new Rectangle(100, 200, 50, 50), false));
-		tutorialButtons.add(new Button(new Rectangle(525, 300, 50, 50), false));
-		tutorialButtons.add(new Button(new Rectangle(100, 100, 50, 50), false));
-		tutorialButtons.add(new Button(new Rectangle(550, 200, 50, 50), false));
-		tutorialLevelLocations.add(new Vector2f(100, 200));
-		tutorialLevelLocations.add(new Vector2f(525, 300));
-		tutorialLevelLocations.add(new Vector2f(100, 100));
-		tutorialLevelLocations.add(new Vector2f(550, 200));
+		tutorialButtons.add(new Button(new Rectangle(133 - 25, 418 - 25, 50, 50), false));
+		tutorialButtons.add(new Button(new Rectangle(663 - 25, 256 - 25, 50, 50), false));
+		tutorialButtons.add(new Button(new Rectangle(527 - 25, 453 - 25, 50, 50), false));
+		tutorialButtons.add(new Button(new Rectangle(400 - 25, 140 - 25, 50, 50), false));
+		tutorialLevelLocations.add(new Vector2f(133 - 25, 418 - 25));
+		tutorialLevelLocations.add(new Vector2f(663 - 25, 256 - 25));
+		tutorialLevelLocations.add(new Vector2f(527 - 25, 453 - 25));
+		tutorialLevelLocations.add(new Vector2f(400 - 25, 140 - 25));
 		
 		spineButtons.add(new Button(new Rectangle(100, 200, 50, 50), false));
 		spineButtons.add(new Button(new Rectangle(525, 300, 50, 50), false));
-		spineButtons.add(new Button(new Rectangle(100, 100, 50, 50), false));
-		spineButtons.add(new Button(new Rectangle(550, 200, 50, 50), false));
+		spineButtons.add(new Button(new Rectangle(516, 104, 50, 50), false));
+		spineButtons.add(new Button(new Rectangle(181 - 25, 466 - 25, 50, 50), false));
 		spineLevelLocations.add(new Vector2f(100, 200));
 		spineLevelLocations.add(new Vector2f(525, 300));
-		spineLevelLocations.add(new Vector2f(100, 100));
-		spineLevelLocations.add(new Vector2f(550, 200));
+		spineLevelLocations.add(new Vector2f(516 - 25, 104 - 25));
+		spineLevelLocations.add(new Vector2f(181 - 25, 466 - 25));
 		
 		curWorld = TUTORIALWORLD;
 	}
@@ -89,13 +96,15 @@ public class LevelSelectState extends BasicGameState {
 			bgSpineImage.draw();
 			selectAnim.draw(spineLevelLocations.get(0).x, spineLevelLocations.get(0).y);
 			for (int i = 1; i < spineLevelLocations.size(); i++) {
-				if (OGPC.completedLevels[i - 1 + 2]) {
+				if (OGPC.completedLevels[i - 1 + 4]) {
 					selectAnim.draw(spineLevelLocations.get(i).x, spineLevelLocations.get(i).y);
 				}
 			}
 			g.setColor(Color.black);
 			g.drawString("Surgery One - The Spine", 0, 0);
 		}
+//		g.setColor(Color.black);
+//		g.drawString(x + ", " + y, x + 20, y);
 	}
 
 	@Override
@@ -122,12 +131,14 @@ public class LevelSelectState extends BasicGameState {
 		
 		if (curWorld == SPINEWORLD) {
 			for (int i = 0; i < spineButtons.size(); i++) {
-				if (spineButtons.get(i).isClicked(arg0.getInput()) && OGPC.completedLevels[i + 1]) {
-					OGPC.level = i + 2;
+				if (spineButtons.get(i).isClicked(arg0.getInput()) && OGPC.completedLevels[i + 3]) {
+					OGPC.level = i + 4;
 					arg1.enterState(OGPC.FLOWCHARTSTATE);
 				}
 			}
 		}
+//		x = arg0.getInput().getMouseX();
+//		y = arg0.getInput().getMouseY();
 	}
 
 	@Override

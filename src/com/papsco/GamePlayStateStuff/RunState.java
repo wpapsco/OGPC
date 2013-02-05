@@ -56,23 +56,21 @@ public class RunState extends BasicGameState {
 		returnButton = new Button(new Image("pics/returnButton.png"), new Vector2f(50, 575));
 		maps = new ArrayList<Map>();
 		
-		map = new Map(new Vector2f(45, 45), new Image("pics/LevelSpine3.png"));
-		map.addEvent(new EnemiesKilledEvent(false));
-		map.addEvent(new LocationalEvent(new Rectangle(420, 500, 360, 80), false));
-		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(650, 45)));
-		map.setObjectiveText("Spine - Level three");
+		//tutorial levels
+		
+		map = new Map(new Vector2f(105, 530), new Image("pics/LevelSpine2.png"));
+		map.addEvent(new LocationalEvent(new Rectangle(640, 160, 40, 140), false));
+		map.setObjectiveText("Spine - Level two");
 		map.addObstacle(new Obstacle(new Rectangle(0, 0, 800, 20)));
 		map.addObstacle(new Obstacle(new Rectangle(0, 0, 20, 600)));
 		map.addObstacle(new Obstacle(new Rectangle(0, 580, 800, 20)));
 		map.addObstacle(new Obstacle(new Rectangle(780, 0, 20, 600)));
-		map.addObstacle(new Obstacle(new Rectangle(200, 280, 20, 300)));
-		map.addObstacle(new Obstacle(new Rectangle(220, 280, 120, 20)));
-		map.addObstacle(new Obstacle(new Rectangle(340, 210, 20, 160)));
-		map.addObstacle(new Obstacle(new Rectangle(340, 210, 180, 20)));
-		map.addObstacle(new Obstacle(new Rectangle(340, 350, 180, 20)));
-		map.addObstacle(new Obstacle(new Rectangle(600, 130, 20, 330)));
-		map.addObstacle(new Obstacle(new Rectangle(600, 130, 180, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(640, 140, 60, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(680, 160, 20, 160)));
+		map.addObstacle(new Obstacle(new Rectangle(180, 300, 520, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(180, 320, 20, 260)));
 		maps.add(map);
+		
 		
 		map = new Map(new Vector2f(400, 350));
 		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
@@ -117,8 +115,26 @@ public class RunState extends BasicGameState {
 		map.addObstacle(new Obstacle(new Rectangle(630, 150, 150, 20)));
 		maps.add(map);
 		
-		//allen, please add spine level 2
+		//Alan, please add spine level 2
+		//sure thing, boss! Spine level 2:
 		
+		map = new Map(new Vector2f(50, 145), new Image("pics/LevelSpine3.png"));
+		map.addEvent(new EnemiesKilledEvent(false));
+		map.addEvent(new LocationalEvent(new Rectangle(620, 150, 160, 100), false));
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 290)));
+		map.setObjectiveText("Spine - Level three");
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 580, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(780, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(200, 280, 20, 300)));
+		map.addObstacle(new Obstacle(new Rectangle(220, 280, 120, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(340, 210, 20, 160)));
+		map.addObstacle(new Obstacle(new Rectangle(340, 210, 180, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(340, 350, 180, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(600, 130, 20, 330)));
+		map.addObstacle(new Obstacle(new Rectangle(600, 130, 180, 20)));
+		maps.add(map);
 		
 		
 		player = new Player(new Vector2f(maps.get(OGPC.level).getPlayerStartLoc().x, maps.get(OGPC.level).getPlayerStartLoc().y), playerImage);
