@@ -56,19 +56,22 @@ public class RunState extends BasicGameState {
 		returnButton = new Button(new Image("pics/returnButton.png"), new Vector2f(50, 575));
 		maps = new ArrayList<Map>();
 		
-		map = new Map(new Vector2f(45, 45), new Image("pics/LevelSpine1.png"));
+		map = new Map(new Vector2f(45, 45), new Image("pics/LevelSpine3.png"));
 		map.addEvent(new EnemiesKilledEvent(false));
 		map.addEvent(new LocationalEvent(new Rectangle(420, 500, 360, 80), false));
 		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(650, 45)));
-		map.setObjectiveText("Spine - Level one");
+		map.setObjectiveText("Spine - Level three");
 		map.addObstacle(new Obstacle(new Rectangle(0, 0, 800, 20)));
 		map.addObstacle(new Obstacle(new Rectangle(0, 0, 20, 600)));
 		map.addObstacle(new Obstacle(new Rectangle(0, 580, 800, 20)));
 		map.addObstacle(new Obstacle(new Rectangle(780, 0, 20, 600)));
-		map.addObstacle(new Obstacle(new Rectangle(170, 20, 20, 350)));
-		map.addObstacle(new Obstacle(new Rectangle(400, 130, 20, 450)));
-		map.addObstacle(new Obstacle(new Rectangle(610, 80, 20, 90)));
-		map.addObstacle(new Obstacle(new Rectangle(630, 150, 150, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(200, 280, 20, 300)));
+		map.addObstacle(new Obstacle(new Rectangle(220, 280, 120, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(340, 210, 20, 160)));
+		map.addObstacle(new Obstacle(new Rectangle(340, 210, 180, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(340, 350, 180, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(600, 130, 20, 330)));
+		map.addObstacle(new Obstacle(new Rectangle(600, 130, 180, 20)));
 		maps.add(map);
 		
 		map = new Map(new Vector2f(400, 350));
@@ -99,6 +102,22 @@ public class RunState extends BasicGameState {
 		maps.add(map);
 		
 		//spine levels
+		map = new Map(new Vector2f(45, 45), new Image("pics/LevelSpine1.png"));
+		map.addEvent(new EnemiesKilledEvent(false));
+		map.addEvent(new LocationalEvent(new Rectangle(420, 500, 360, 80), false));
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(650, 45)));
+		map.setObjectiveText("Spine - Level one");
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 580, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(780, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(170, 20, 20, 350)));
+		map.addObstacle(new Obstacle(new Rectangle(400, 130, 20, 450)));
+		map.addObstacle(new Obstacle(new Rectangle(610, 80, 20, 90)));
+		map.addObstacle(new Obstacle(new Rectangle(630, 150, 150, 20)));
+		maps.add(map);
+		
+		//allen, please add spine level 2
 		
 		
 		
