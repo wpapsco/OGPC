@@ -52,6 +52,12 @@ public class CheckCollisionDirectionally extends ConditionalBlock {
 			r.setCenterY(p.getForewardPosition(2).y);
 			return m.isColliding(r);
 		}
+		if (conditionalBlockType == ConditionalBlock.CHECK_RIGHT_BLOCK) {
+			Shape r = new Rectangle(0, 0, p.getImage().getWidth(), p.getImage().getHeight());
+			r.setCenterX(p.getMovedPosition(2, 90).x);
+			r.setCenterY(p.getMovedPosition(2, 90).y);
+			return m.isColliding(r);
+		}
 		return false;
 	}
 	

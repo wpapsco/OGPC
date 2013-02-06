@@ -107,6 +107,16 @@ public class Player {
 		}
 		return new Vector2f((float) (loc.x + distance * Math.cos(Math.toRadians(tfloat))), (float) (loc.y + distance * Math.sin(Math.toRadians(tfloat))));
 	}
+	public Vector2f getMovedPosition(float distance, float angle) {
+		float tfloat = rotation - 90 + angle;
+		if (tfloat < 0) {
+			tfloat+=360;
+		}
+		if (tfloat > 360) {
+			tfloat-=360;
+		}
+		return new Vector2f((float) (loc.x + distance * Math.cos(Math.toRadians(tfloat))), (float) (loc.y + distance * Math.sin(Math.toRadians(tfloat))));
+	}
 	public void setRotate(float r) {
 		image.setRotation(r);
 		if (r > 360) {r-=360;}

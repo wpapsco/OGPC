@@ -18,7 +18,6 @@ public class AtWallBlock extends ConditionalBlock {
 	public AtWallBlock(Vector2f loc, RunState s) throws SlickException {
 		super(loc, imageString);
 		// TODO Auto-generated constructor stub
-		b = s.getPlayer().isColliding();
 	}
 
 	@Override
@@ -35,30 +34,23 @@ public class AtWallBlock extends ConditionalBlock {
 		boolean b2 = true;
 		r2.setCenterX(r2.getCenterX() + 2); //moving right two blocks
 		if (s.getMap().isColliding(r2)) {
-			s.getPlayer().setColliding(true);
 			b2 = false;
 		}
 		r2.setCenterX(r2.getCenterX() - 4); //resetting and moving left two blocks
 		if (s.getMap().isColliding(r2)) {
-			s.getPlayer().setColliding(true);
 			b2 = false;
 		}
 		r2.setCenterX(r2.getCenterX() + 2); //resetting x
 		r2.setCenterY(r2.getCenterY() + 2); //moving down two blocks
 		if (s.getMap().isColliding(r2)) {
-			s.getPlayer().setColliding(true);
 			b2 = false;
 		}
 		r2.setCenterY(r2.getCenterY() - 4); //resetting and moving up two blocks
 		if (s.getMap().isColliding(r2)) {
-			s.getPlayer().setColliding(true);
 			b2 = false;
 		}
 		r2.setCenterY(r2.getCenterY() + 2); //resetting y
-		if (b2) {
-			s.getPlayer().setColliding(false);
-		}
-		b = s.getPlayer().isColliding();
+		b = !b2;
 	}
 
 	@Override

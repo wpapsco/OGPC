@@ -57,21 +57,6 @@ public class RunState extends BasicGameState {
 		maps = new ArrayList<Map>();
 		
 		//tutorial levels
-		
-		map = new Map(new Vector2f(105, 530), new Image("pics/LevelSpine2.png"));
-		map.addEvent(new LocationalEvent(new Rectangle(640, 160, 40, 140), false));
-		map.setObjectiveText("Spine - Level two");
-		map.addObstacle(new Obstacle(new Rectangle(0, 0, 800, 20)));
-		map.addObstacle(new Obstacle(new Rectangle(0, 0, 20, 600)));
-		map.addObstacle(new Obstacle(new Rectangle(0, 580, 800, 20)));
-		map.addObstacle(new Obstacle(new Rectangle(780, 0, 20, 600)));
-		map.addObstacle(new Obstacle(new Rectangle(640, 140, 60, 20)));
-		map.addObstacle(new Obstacle(new Rectangle(680, 160, 20, 160)));
-		map.addObstacle(new Obstacle(new Rectangle(180, 300, 520, 20)));
-		map.addObstacle(new Obstacle(new Rectangle(180, 320, 20, 260)));
-		maps.add(map);
-		
-		
 		map = new Map(new Vector2f(400, 350));
 		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(400, 200)));
 		map.addEvent(new EnemiesKilledEvent(false));
@@ -117,6 +102,18 @@ public class RunState extends BasicGameState {
 		
 		//Alan, please add spine level 2
 		//sure thing, boss! Spine level 2:
+		map = new Map(new Vector2f(105, 530), new Image("pics/LevelSpine2.png"));
+		map.addEvent(new LocationalEvent(new Rectangle(640, 160, 40, 140), false));
+		map.setObjectiveText("Spine - Level two");
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 580, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(780, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(640, 140, 60, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(680, 160, 20, 160)));
+		map.addObstacle(new Obstacle(new Rectangle(180, 300, 520, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(180, 320, 20, 260)));
+		maps.add(map);
 		
 		map = new Map(new Vector2f(50, 145), new Image("pics/LevelSpine3.png"));
 		map.addEvent(new EnemiesKilledEvent(false));

@@ -59,6 +59,7 @@ public class FlowChartState extends BasicGameState {
 	
 	private Button checkForewardButton;
 	private Button checkBackButton;
+	private Button checkRightButton;
 	
 	private Button checkEnemiesDeadButton;
 	
@@ -108,6 +109,7 @@ public class FlowChartState extends BasicGameState {
 		
 		checkForewardButton =      new Button(new Image("pics/FrontTouchingWall.png"), new Vector2f(0, 0));
 		checkBackButton =          new Button(new Image("pics/BackTouchingWall.png"), new Vector2f(0, 0));
+		checkRightButton =         new Button(new Image("pics/RightTouchingWall.png"), new Vector2f(0, 0));
 		
 		checkEnemiesDeadButton =   new Button(new Image("pics/DeadEnemies.png"), new Vector2f(50, 125));
 		
@@ -140,7 +142,7 @@ public class FlowChartState extends BasicGameState {
 		CollisionBlocksPanel = new ButtonPanel(3, 2, 100, 50, new Vector2f(115, 375));
 		CollisionBlocksPanel.addButton(checkBackButton);
 		CollisionBlocksPanel.addButton(checkForewardButton);
-//		CollisionBlocksPanel.addButton
+		CollisionBlocksPanel.addButton(checkRightButton);
 //		CollisionBlocksPanel.addButton
 //		CollisionBlocksPanel.addButton
 		
@@ -322,6 +324,9 @@ public class FlowChartState extends BasicGameState {
 						if (selectedBlockSubType == ConditionalBlock.CHECK_BACKWARD_BLOCK) {
 							blocks.add(new CheckCollisionDirectionally(new Vector2f(x, y), ConditionalBlock.CHECK_BACKWARD_BLOCK));
 						}
+						if (selectedBlockSubType == ConditionalBlock.CHECK_RIGHT_BLOCK) {
+							blocks.add(new CheckCollisionDirectionally(new Vector2f(x, y), ConditionalBlock.CHECK_RIGHT_BLOCK));
+						}
 						if (selectedBlockSubType == ConditionalBlock.ALL_ENEMIES_DEAD) {
 							blocks.add(new AllEnemiesDeadBlock(new Vector2f(x, y)));
 						}
@@ -450,6 +455,14 @@ public class FlowChartState extends BasicGameState {
 			mouseImage = new Image("pics/FrontTouchingWall.png");
 			selectedBlockType = Block.CONDITIONAL_BLOCK;
 			selectedBlockSubType = ConditionalBlock.CHECK_FOREWARD_BLOCK;
+			mouseImage.setAlpha(.75f);
+			settingBlock = true;
+		}
+		
+		if (CollisionBlocksPanel.isClicked(2, in)) {
+			mouseImage = new Image("pics/RightTouchingWall.png");
+			selectedBlockType = Block.CONDITIONAL_BLOCK;
+			selectedBlockSubType = ConditionalBlock.CHECK_RIGHT_BLOCK;
 			mouseImage.setAlpha(.75f);
 			settingBlock = true;
 		}
