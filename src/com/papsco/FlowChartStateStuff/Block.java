@@ -32,6 +32,7 @@ public abstract class Block {
 	public static final int COMMAND_BLOCK = 0;
 	public static final int CONDITIONAL_BLOCK = 1;
 	private boolean isBlackListed;
+	//testing a git feature, don't mind this!
 	
 	public abstract Block incite();
 	public abstract void init(GameContainer c, RunState s);
