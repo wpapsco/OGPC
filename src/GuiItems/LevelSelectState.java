@@ -26,14 +26,18 @@ public class LevelSelectState extends BasicGameState {
 	
 	public static final int TUTORIALWORLD = 0;
 	public static final int SPINEWORLD = 1;
+	public static final int BRAINWORLD = 2;
 	
 	private Image bgSpineImage;
 	private Image bgTutorialImage;
+	private Image bgBrainImage;
 	private Animation selectAnim;
 	private ArrayList<Button> tutorialButtons;
 	private ArrayList<Vector2f> tutorialLevelLocations;
 	private ArrayList<Button> spineButtons;
 	private ArrayList<Vector2f> spineLevelLocations;
+	private ArrayList<Button> brainButtons;
+	private ArrayList<Vector2f> brainLevelLocations;
 	private int curWorld;
 	
 	
@@ -51,8 +55,11 @@ public class LevelSelectState extends BasicGameState {
 		spineLevelLocations = new ArrayList<Vector2f>();
 		tutorialButtons = new ArrayList<Button>();
 		tutorialLevelLocations = new ArrayList<Vector2f>();
+		brainButtons = new ArrayList<Button>();
+		brainLevelLocations = new ArrayList<Vector2f>();
 		bgSpineImage = new Image("pics/vertibre.png");
 		bgTutorialImage = new Image("pics/TutorialLevelSelect.png");
+		bgBrainImage = new Image("pics/brain.png");
 		selectAnim = new Animation(new SpriteSheet(new Image("pics/SelectAnimation.png"), 50, 50), 100);
 		
 		tutorialButtons.add(new Button(new Rectangle(133 - 25, 418 - 25, 50, 50), false));
@@ -73,7 +80,9 @@ public class LevelSelectState extends BasicGameState {
 		spineLevelLocations.add(new Vector2f(516 - 25, 104 - 25));
 		spineLevelLocations.add(new Vector2f(181 - 25, 466 - 25));
 		
-		curWorld = TUTORIALWORLD;
+		
+		
+		curWorld = BRAINWORLD;
 	}
 
 	@Override
@@ -103,6 +112,18 @@ public class LevelSelectState extends BasicGameState {
 			g.setColor(Color.black);
 			g.drawString("Surgery One - The Spine", 0, 0);
 		}
+		
+		if (curWorld == BRAINWORLD) {
+			bgBrainImage.draw();
+//			selectAnim.draw(brainLevelLocations.get(0).x, brainLevelLocations.get(0).y);
+			for (int i = 1; i < brainLevelLocations.size(); i++) {
+				if (OGPC.completedLevels[i - 1 + 8]) {
+					selectAnim.draw(brainLevelLocations.get(i).x, brainLevelLocations.get(i).y);
+				}
+			}
+			g.setColor(Color.black);
+			g.drawString("Surgery Two - The brain", 0, 0);
+		}
 //		g.setColor(Color.black);
 //		g.drawString(x + ", " + y, x + 20, y);
 	}
@@ -114,6 +135,9 @@ public class LevelSelectState extends BasicGameState {
 		
 		if (OGPC.completedLevels[3]) {
 			curWorld = SPINEWORLD;
+		}
+		if (OGPC.completedLevels[7]) {
+			curWorld = BRAINWORLD;
 		}
 		
 		if (curWorld == TUTORIALWORLD) {
@@ -132,6 +156,15 @@ public class LevelSelectState extends BasicGameState {
 		if (curWorld == SPINEWORLD) {
 			for (int i = 0; i < spineButtons.size(); i++) {
 				if (spineButtons.get(i).isClicked(arg0.getInput()) && OGPC.completedLevels[i + 3]) {
+					OGPC.level = i + 4;
+					arg1.enterState(OGPC.FLOWCHARTSTATE);
+				}
+			}
+		}
+		
+		if (curWorld == BRAINWORLD) {
+			for (int i = 0; i < brainButtons.size(); i++) {
+				if (brainButtons.get(i).isClicked(arg0.getInput()) && OGPC.completedLevels[i + 7]) {
 					OGPC.level = i + 4;
 					arg1.enterState(OGPC.FLOWCHARTSTATE);
 				}

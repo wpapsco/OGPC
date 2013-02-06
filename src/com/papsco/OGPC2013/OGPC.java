@@ -69,8 +69,12 @@ public class OGPC extends StateBasedGame {
 	public static void main(String[] args) throws SlickException {
 		// TODO Auto-generated method stub
 		AppGameContainer app = new AppGameContainer(new OGPC("GAEM"));
+		app.setShowFPS(false);
+        String[] icons = new String[2];
+        icons[0] = "pics/icon16.png";
+        icons[1] = "pics/icon32.png";
+        app.setIcons(icons);
         app.setDisplayMode(800, 600, false);
-        app.setShowFPS(false);
         app.start();
 	}
 
