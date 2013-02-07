@@ -73,16 +73,15 @@ public class LevelSelectState extends BasicGameState {
 		
 		spineButtons.add(new Button(new Rectangle(100, 200, 50, 50), false));
 		spineButtons.add(new Button(new Rectangle(525, 300, 50, 50), false));
-		spineButtons.add(new Button(new Rectangle(516, 104, 50, 50), false));
-		spineButtons.add(new Button(new Rectangle(181 - 25, 466 - 25, 50, 50), false));
+		spineButtons.add(new Button(new Rectangle(516 - 25, 104 - 25, 50, 50), false));
 		spineLevelLocations.add(new Vector2f(100, 200));
 		spineLevelLocations.add(new Vector2f(525, 300));
 		spineLevelLocations.add(new Vector2f(516 - 25, 104 - 25));
-		spineLevelLocations.add(new Vector2f(181 - 25, 466 - 25));
 		
+		brainButtons.add(new Button(new Rectangle(100, 100, 50, 50), false));
+		brainLevelLocations.add(new Vector2f(100, 100));
 		
-		
-		curWorld = BRAINWORLD;
+		curWorld = TUTORIALWORLD;
 	}
 
 	@Override
@@ -115,9 +114,9 @@ public class LevelSelectState extends BasicGameState {
 		
 		if (curWorld == BRAINWORLD) {
 			bgBrainImage.draw();
-//			selectAnim.draw(brainLevelLocations.get(0).x, brainLevelLocations.get(0).y);
+			selectAnim.draw(brainLevelLocations.get(0).x, brainLevelLocations.get(0).y);
 			for (int i = 1; i < brainLevelLocations.size(); i++) {
-				if (OGPC.completedLevels[i - 1 + 8]) {
+				if (OGPC.completedLevels[i - 1 + 6]) {
 					selectAnim.draw(brainLevelLocations.get(i).x, brainLevelLocations.get(i).y);
 				}
 			}
@@ -136,7 +135,7 @@ public class LevelSelectState extends BasicGameState {
 		if (OGPC.completedLevels[3]) {
 			curWorld = SPINEWORLD;
 		}
-		if (OGPC.completedLevels[7]) {
+		if (OGPC.completedLevels[6]) {
 			curWorld = BRAINWORLD;
 		}
 		
@@ -164,8 +163,9 @@ public class LevelSelectState extends BasicGameState {
 		
 		if (curWorld == BRAINWORLD) {
 			for (int i = 0; i < brainButtons.size(); i++) {
-				if (brainButtons.get(i).isClicked(arg0.getInput()) && OGPC.completedLevels[i + 7]) {
-					OGPC.level = i + 4;
+				if (brainButtons.get(i).isClicked(arg0.getInput()) 
+						&& OGPC.completedLevels[i + 6]) {
+					OGPC.level = i + 7;
 					arg1.enterState(OGPC.FLOWCHARTSTATE);
 				}
 			}

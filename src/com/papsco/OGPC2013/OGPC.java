@@ -29,15 +29,17 @@ public class OGPC extends StateBasedGame {
 	public OGPC(String name) {
 		super(name);
 		// TODO Auto-generated constructor stub
-		completedLevels = new boolean[8];
-		completedLevels[0] = false;
-		completedLevels[1] = false;
-		completedLevels[2] = false;
-		completedLevels[3] = false;
-		completedLevels[4] = false;
-		completedLevels[5] = false;
-		completedLevels[6] = false;
+		completedLevels = new boolean[10];
+		completedLevels[0] = true;
+		completedLevels[1] = true;
+		completedLevels[2] = true;
+		completedLevels[3] = true;
+		completedLevels[4] = true;
+		completedLevels[5] = true;
+		completedLevels[6] = true;
 		completedLevels[7] = false;
+		completedLevels[8] = false;
+		completedLevels[9] = false;
 	}
 
 	@Override

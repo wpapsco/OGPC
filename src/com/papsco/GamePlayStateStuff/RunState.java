@@ -133,6 +133,20 @@ public class RunState extends BasicGameState {
 		map.addObstacle(new Obstacle(new Rectangle(600, 130, 180, 20)));
 		maps.add(map);
 		
+		map = new Map(new Vector2f(50, 145), new Image("pics/LevelBrain1.png"));
+		map.addEvent(new EnemiesKilledEvent(false));
+		map.addEvent(new LocationalEvent(new Rectangle(620, 150, 160, 100), false));
+		map.setObjectiveText("Brain - Level one");
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(0, 580, 800, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(780, 0, 20, 600)));
+		map.addObstacle(new Obstacle(new Rectangle(600, 290, 20, 130)));
+		map.addObstacle(new Obstacle(new Rectangle(470, 140, 20, 130)));
+		map.addObstacle(new Obstacle(new Rectangle(290, 290, 20, 130)));
+		map.addObstacle(new Obstacle(new Rectangle(110, 270, 510, 20)));
+		map.addObstacle(new Obstacle(new Rectangle(110, 20, 270, 20)));
+		maps.add(map);
 		
 		player = new Player(new Vector2f(maps.get(OGPC.level).getPlayerStartLoc().x, maps.get(OGPC.level).getPlayerStartLoc().y), playerImage);
 	}
@@ -144,8 +158,8 @@ public class RunState extends BasicGameState {
 		//background.draw();
 		g.setColor(Color.blue);
 		maps.get(OGPC.level).draw(g);
-		g.setColor(Color.blue);
-		maps.get(OGPC.level).drawObstacles(g);
+//		g.setColor(Color.blue);
+//		maps.get(OGPC.level).drawObstacles(g);
 		player.draw(g);
 		returnButton.draw(g);
 	}
