@@ -133,9 +133,11 @@ public class RunState extends BasicGameState {
 		map.addObstacle(new Obstacle(new Rectangle(600, 130, 180, 20)));
 		maps.add(map);
 		
-		map = new Map(new Vector2f(50, 145), new Image("pics/LevelBrain1.png"));
+		//brain levels
+		map = new Map(new Vector2f(300, 145), new Image("pics/LevelBrain1.png"));
 		map.addEvent(new EnemiesKilledEvent(false));
-		map.addEvent(new LocationalEvent(new Rectangle(620, 150, 160, 100), false));
+		map.addEvent(new LocationalEvent(new Rectangle(310, 290, 293, 100), false));
+		map.addEnemy(new Enemy(new Image("pics/Virus.png"), new Vector2f(475, 315)));
 		map.setObjectiveText("Brain - Level one");
 		map.addObstacle(new Obstacle(new Rectangle(0, 0, 800, 20)));
 		map.addObstacle(new Obstacle(new Rectangle(0, 0, 20, 600)));
