@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Line;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -149,6 +150,8 @@ public class Map {
 	}
 	
 	public void draw(Graphics g) {
+		g.setColor(Color.gray);
+		g.fill(new Rectangle(0, 0, 800, 600));
 		if (hasImage) {
 			image.draw();
 		}else {

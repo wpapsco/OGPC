@@ -82,7 +82,7 @@ public class Bullet {
 		if (!isMarkedForDeletion) {
 			g.setColor(Color.green);
 			image.drawCentered(currentPoint.x, currentPoint.y);
-			g.draw(collisionRect);
+//			g.draw(collisionRect);
 		}
 		if (isMarkedForDeletion && !isFinishedExploding) {
 			g.setColor(Color.red);

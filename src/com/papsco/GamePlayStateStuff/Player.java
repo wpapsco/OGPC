@@ -39,7 +39,7 @@ public class Player {
 	public void draw(Graphics g) {
 		image.drawCentered(loc.x, loc.y);
 		g.setColor(Color.green);
-		g.draw(collisionRect);
+//		g.draw(collisionRect);
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).draw(g);
 		}

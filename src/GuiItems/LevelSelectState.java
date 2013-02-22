@@ -32,6 +32,7 @@ public class LevelSelectState extends BasicGameState {
 	private Image bgTutorialImage;
 	private Image bgBrainImage;
 	private Animation selectAnim;
+	private Animation finishedAnim;
 	private ArrayList<Button> tutorialButtons;
 	private ArrayList<Vector2f> tutorialLevelLocations;
 	private ArrayList<Button> spineButtons;
@@ -61,6 +62,7 @@ public class LevelSelectState extends BasicGameState {
 		bgTutorialImage = new Image("pics/TutorialLevelSelect.png");
 		bgBrainImage = new Image("pics/brain.png");
 		selectAnim = new Animation(new SpriteSheet(new Image("pics/SelectAnimation.png"), 50, 50), 100);
+		finishedAnim = new Animation(new SpriteSheet(new Image("pics/SelectAnimationGreen.png"),50 ,50), 100);
 		
 		tutorialButtons.add(new Button(new Rectangle(133 - 25, 418 - 25, 50, 50), false));
 		tutorialButtons.add(new Button(new Rectangle(663 - 25, 256 - 25, 50, 50), false));
@@ -80,6 +82,8 @@ public class LevelSelectState extends BasicGameState {
 		
 		brainButtons.add(new Button(new Rectangle(100, 100, 50, 50), false));
 		brainLevelLocations.add(new Vector2f(100, 100));
+		brainLevelLocations.add(new Vector2f(200, 200));
+		brainLevelLocations.add(new Vector2f(300, 300));
 		
 		curWorld = TUTORIALWORLD;
 	}
@@ -89,11 +93,22 @@ public class LevelSelectState extends BasicGameState {
 			throws SlickException {
 		// TODO Auto-generated method stub
 		if (curWorld == TUTORIALWORLD) {
+			boolean animd = false;
 			bgTutorialImage.draw();
-			selectAnim.draw(tutorialLevelLocations.get(0).x, tutorialLevelLocations.get(0).y);
+			if (!OGPC.completedLevels[0]) {
+				selectAnim.draw(tutorialLevelLocations.get(0).x, tutorialLevelLocations.get(0).y);
+			} else {
+				finishedAnim.draw(tutorialLevelLocations.get(0).x, tutorialLevelLocations.get(0).y);
+			}
 			for (int i = 1; i < tutorialLevelLocations.size(); i++) {
-				if (OGPC.completedLevels[i - 1]) {
+				if (OGPC.completedLevels[i]) {
+					finishedAnim.draw(tutorialLevelLocations.get(i).x, tutorialLevelLocations.get(i).y);
+				}
+			}
+			for (int i = 0; i < tutorialLevelLocations.size(); i++) {
+				if (!OGPC.completedLevels[i] && !animd) {
 					selectAnim.draw(tutorialLevelLocations.get(i).x, tutorialLevelLocations.get(i).y);
+					animd = true;
 				}
 			}
 			g.setColor(Color.white);
@@ -102,10 +117,21 @@ public class LevelSelectState extends BasicGameState {
 		
 		if (curWorld == SPINEWORLD) {
 			bgSpineImage.draw();
-			selectAnim.draw(spineLevelLocations.get(0).x, spineLevelLocations.get(0).y);
+			if (!OGPC.completedLevels[4]) {
+				selectAnim.draw(spineLevelLocations.get(0).x, spineLevelLocations.get(0).y);
+			} else {
+				finishedAnim.draw(spineLevelLocations.get(0).x, spineLevelLocations.get(0).y);
+			}
+			boolean animd = false;
 			for (int i = 1; i < spineLevelLocations.size(); i++) {
-				if (OGPC.completedLevels[i - 1 + 4]) {
+				if (OGPC.completedLevels[i + 4]) {
+					finishedAnim.draw(spineLevelLocations.get(i).x, spineLevelLocations.get(i).y);
+				}
+			}
+			for (int i = 0; i < spineLevelLocations.size(); i++) {
+				if (!OGPC.completedLevels[i + 4] && !animd) {
 					selectAnim.draw(spineLevelLocations.get(i).x, spineLevelLocations.get(i).y);
+					animd = true;
 				}
 			}
 			g.setColor(Color.black);
@@ -114,10 +140,21 @@ public class LevelSelectState extends BasicGameState {
 		
 		if (curWorld == BRAINWORLD) {
 			bgBrainImage.draw();
-			selectAnim.draw(brainLevelLocations.get(0).x, brainLevelLocations.get(0).y);
+			if (!OGPC.completedLevels[7]) {
+				selectAnim.draw(brainLevelLocations.get(0).x, brainLevelLocations.get(0).y);
+			} else {
+				finishedAnim.draw(brainLevelLocations.get(0).x, brainLevelLocations.get(0).y);
+			}
+			boolean animd = false;
 			for (int i = 1; i < brainLevelLocations.size(); i++) {
-				if (OGPC.completedLevels[i - 1 + 6]) {
+				if (OGPC.completedLevels[i + 7]) {
+					finishedAnim.draw(brainLevelLocations.get(i).x, brainLevelLocations.get(i).y);
+				}
+			}
+			for (int i = 0; i < spineLevelLocations.size(); i++) {
+				if (!OGPC.completedLevels[i + 7] && !animd) {
 					selectAnim.draw(brainLevelLocations.get(i).x, brainLevelLocations.get(i).y);
+					animd = true;
 				}
 			}
 			g.setColor(Color.black);

@@ -46,7 +46,7 @@ public class Enemy {
 	public void draw(Graphics g) {
 		image.drawCentered(loc.x, loc.y);
 		g.setColor(Color.green);
-		g.draw(collisionRect);
+//		g.draw(collisionRect);
 	}
 
 	public boolean isMarkedForDeletion() {
