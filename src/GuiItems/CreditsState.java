@@ -18,6 +18,7 @@ public class CreditsState extends BasicGameState {
 	private Color[] colors;
 	private int[] randx;
 	private int[] randy;
+	private int interval = 20;
 	UnicodeFont tfont;
 	
 	public CreditsState(int StateID) {
@@ -42,7 +43,8 @@ public class CreditsState extends BasicGameState {
 		randy = new int[4];
 		randx = new int[4];
 		for (int i = 0; i < randy.length; i++) {
-			randy[i] = Math.round(Math.random() * 7;
+			randy[i] = (int) Math.round(Math.random() * interval);
+			randx[i] = (int) Math.round(Math.random() * interval);
 		}
 		
 		tfont = new UnicodeFont(new Font("Arial", Font.PLAIN, 40));
@@ -52,12 +54,13 @@ public class CreditsState extends BasicGameState {
 	}
 
 	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2)
+	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < colors.length; i++) {
-			tfont.drawString(0, i * tfont.getHeight(credits[i]), credits[i], colors[i]);
+			tfont.drawString(0 + randx[i], randy[i] + (i * tfont.getHeight(credits[i])), credits[i], colors[i]);
 		}
+		g.scale(1.5f, 1.5f);
 	}
 
 	@Override
@@ -66,6 +69,10 @@ public class CreditsState extends BasicGameState {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < colors.length; i++) {
 			colors[i] = new Color((int) Math.round(Math.random() * 255), (int) Math.round(Math.random() * 255), (int) Math.round(Math.random() * 255));
+		}
+		for (int i = 0; i < randy.length; i++) {
+			randy[i] = (int) Math.round(Math.random() * interval);
+			randx[i] = (int) Math.round(Math.random() * interval);
 		}
 	}
 
