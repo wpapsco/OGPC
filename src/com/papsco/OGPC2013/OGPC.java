@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import GuiItems.CreditsState;
 import GuiItems.LevelSelectState;
 
 import com.papsco.FlowChartStateStuff.FlowChartState;
@@ -20,6 +21,7 @@ public class OGPC extends StateBasedGame {
 	public static final int RUNSTATE = 1;
 	public static final int TITLESTATE = 2;
 	public static final int LEVELSELECTSTATE = 3;
+	public static final int CREDITSSTATE = 4;
 	public ArrayList<Block> blockInfo;
 	public static boolean doReset = false;
 	public static boolean IsMuted = true;
@@ -49,7 +51,8 @@ public class OGPC extends StateBasedGame {
 		this.addState(new FlowChartState(FLOWCHARTSTATE));
 		this.addState(new RunState(RUNSTATE));
 		this.addState(new LevelSelectState(LEVELSELECTSTATE));
-		this.enterState(TITLESTATE);
+		this.addState(new CreditsState(CREDITSSTATE));
+		this.enterState(CREDITSSTATE);
 	}
 	
 	public ArrayList<Block> getCurrentBlockInfo() {
